@@ -50,4 +50,4 @@ same3 <- first3 %>%
 pop3 <- sum(same3$prop)
 ```
 The regular expression I used to match the various spellings of my name is "^E[m]+[ai][l]+[iey]+$".
-The popularity of my name in 2018 is `r ppop18`, compared to when I was born in 2001 which was `r pop01`. 
+The popularity of my name in 2018 is `r pop18`, compared to when I was born in 2001 which was `r pop01`. 
