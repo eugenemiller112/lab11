@@ -1,0 +1,20 @@
+---
+title: "Lab 11 All Stars"
+author: "Emily Archambault"
+date: "11/8/2019"
+output: html_document
+---
+
+```{r setup, message = FALSE, echo = FALSE, warning = FALSE}
+library(readr)
+library(dplyr)
+library(babynames)
+
+names2018 <- read_csv("yob2018.txt", 
+                      col_names = FALSE, col_types = cols(X2 = col_character(),  X3 = col_integer()))
+names2018 <- names2018 %>% rename("name"="X1", "sex"="X2", "n"="X3")
+names2018$year <- 2018
+names2018 <- names2018 %>% mutate(prop = n/sum(n))
+totalnames <- rbind(babynames, names2018)
+```
+
