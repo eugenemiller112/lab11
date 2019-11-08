@@ -17,4 +17,35 @@ names2018$year <- 2018
 names2018 <- names2018 %>% mutate(prop = n/sum(n))
 totalnames <- rbind(babynames, names2018)
 ```
+### Individual Name Popularities
 
+## Emily Archambault
+ 
+```{r, message=FALSE, echo=FALSE, warning=FALSE}
+emily <- totalnames %>% 
+  filter(str_detect(name, "^E[m]+[ai][l]+[iey]+$")) %>%
+  filter(sex == "F")
+first3 <- totalnames %>%
+  filter(str_detect(name, "^Emi")) %>%
+  group_by(year)%>%
+  filter(sex == "F")
+
+ggplot() + geom_col(data = first3, mapping = aes(x = year, y = prop)) +
+  geom_smooth(data = emily, mapping = aes(x = year, y = prop), se = FALSE, color = "red") + 
+  annotate("text", x = 1960, y = 0.0013, label = "Emily", color = "red") +
+  ggtitle("Popularity of All Female 'Emi...' Names vs Popularity of 'Emily' ")
+
+emily18 <- emily %>%
+  filter(year == "2018")
+pop18 <- sum(emily18$prop)
+
+emily01 <- emily %>%
+  filter(year == "2001")
+pop01 <- sum(emily01$prop)
+
+same3 <- first3 %>%
+  filter(year == "2018")
+pop3 <- sum(same3$prop)
+```
+The regular expression I used to match the various spellings of my name is "^E[m]+[ai][l]+[iey]+$".
+The popularity of my name in 2018 is `r ppop18`, compared to when I was born in 2001 which was `r pop01`. 
