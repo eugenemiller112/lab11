@@ -50,4 +50,6 @@ same3 <- first3 %>%
 pop3 <- sum(same3$prop)
 ```
 The regular expression I used to match the various spellings of my name is "^E[m]+[ai][l]+[iey]+$".
-The popularity of my name in 2018 is `r pop18`, compared to when I was born in 2001 which was `r pop01`. 
+The popularity of my name in 2018 is `r pop18`, compared to when I was born in 2001 which was `r pop01`, a difference of
+0.01107516. The popularity of all (female) names starting with "Emi" in 2018 is `r pop3`, which is 0.001304714 greater than
+the proportion of my name alone.
