@@ -9,6 +9,7 @@ output: html_document
 library(readr)
 library(dplyr)
 library(babynames)
+library(stringr)
 
 names2018 <- read_csv("yob2018.txt", 
                       col_names = FALSE, col_types = cols(X2 = col_character(),  X3 = col_integer()))
