@@ -21,6 +21,67 @@ totalnames <- rbind(babynames, names2018)
 ```
 ### Individual Name Popularities
 
+## Eugene Miller
+```{r, message=FALSE, echo=FALSE, warning=FALSE}
+#Data import & tidy
+new_data <- read.delim("yob2018.txt", header = FALSE, sep = ",")
+names(new_data) <- c("name", "sex", "n")
+new_data <- new_data %>%
+  mutate(prop = `n` / sum(new_data$n)) %>%
+  mutate(year = 2018)
+
+complete_data <- full_join(new_data,babynames)
+```
+```{r, message=FALSE, echo=FALSE, warning=FALSE, fig.align='center'}
+#Timeseries for "Eug" and "Eugene"
+my_name <- complete_data %>%
+  filter(str_detect(name, "Eugene") & sex == 'M') %>%
+  group_by(year) %>%
+  summarise(prop = sum(prop)) %>%
+  mutate("Eug" = FALSE)
+
+initials <- complete_data %>%
+  filter(str_detect(name, "^Eug") & sex == 'M') %>%
+  group_by(year) %>%
+  summarise(prop = sum(prop)) %>%
+  mutate("Eug" = TRUE)
+
+my_data <- full_join(my_name, initials)
+my_name <- my_name %>%
+  select(-c("Eug"))
+initials <- initials %>%
+  select(-c("Eug"))
+
+ggplot(my_data) +
+  geom_jitter(mapping = aes(x = year, y = prop, color = Eug)) + 
+  labs(x = "Year", y = "Proportion", color = "First Three Letters Only", title = "Popularity of Eug and Eugene since 1880")
+```
+
+I used the string "Eugene" to search for my name, as this is the only spelling of my name I am aware of. My name seems to be the most popular name that starts with letters "Eug" as the popularity of names that start with "Eug" and "Eugene" track very closely to each other. 
+
+```{r, message=FALSE, echo=FALSE, warning=FALSE, fig.align='center'}
+#Stats on Eugene
+pre_me <- my_name %>%
+  filter(year == 1980)
+birth_year <- my_name %>%
+  filter(year == 1999)
+post_me <- my_name %>%
+  filter(year == 2018)
+
+pop_data <- tribble(
+  ~"Year", ~"Proportion",
+  pre_me$year, pre_me$prop,
+  birth_year$year, birth_year$prop,
+  post_me$year, post_me$prop,
+)
+
+ggplot(pop_data) +
+  geom_col(mapping = aes(x = Year, y = Proportion, fill = Proportion)) + 
+  geom_text(mapping = aes(label = Year, y = Proportion/2, x = Year), color = 'white')
+```
+
+My name has become less popular since I was born, and its popularity continues to decline every year. In 1980 the popularity was `r pre_me$prop` in my birth year 1999: `r birth_year$prop` and in 2018: `r post_me$prop`. 
+
 ## Emily Archambault
  
 ```{r, message=FALSE, echo=FALSE, warning=FALSE}
@@ -53,3 +114,24 @@ The regular expression I used to match the various spellings of my name is "^E[m
 The popularity of my name in 2018 is `r pop18`, compared to when I was born in 2001 which was `r pop01`, a difference of
 0.01107516. The popularity of all (female) names starting with "Emi" in 2018 is `r pop3`, which is 0.001304714 greater than
 the proportion of my name alone.
+
+
+### Name Reccommendation
+```{r, message=FALSE, echo=FALSE, warning=FALSE}
+#Two uptrending names (Mia, Owen)
+
+mia <- babynames %>%
+  filter(str_detect(name,"^Mia$") & sex == "F")
+
+ggplot(mia) +
+  geom_jitter(mapping = aes(x = year, y = prop)) +
+  labs(title = "Timeseries for 'Mia'")
+
+owen <- babynames %>%
+  filter(str_detect(name,"^Owen$") & sex == "M")
+
+ggplot(owen) +
+  geom_jitter(mapping = aes(x = year, y = prop)) +
+  labs(title = "Timeseries for 'Owen'")
+```
+
