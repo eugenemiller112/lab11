@@ -82,6 +82,7 @@ ggplot(pop_data) +
 
 My name has become less popular since I was born, and its popularity continues to decline every year. In 1980 the popularity was `r pre_me$prop` in my birth year 1999: `r birth_year$prop` and in 2018: `r post_me$prop`. 
 
+
 ## Emily Archambault
  
 ```{r, message=FALSE, echo=FALSE, warning=FALSE}
@@ -114,6 +115,43 @@ The regular expression I used to match the various spellings of my name is "^E[m
 The popularity of my name in 2018 is `r pop18`, compared to when I was born in 2001 which was `r pop01`, a difference of
 0.01107516. The popularity of all (female) names starting with "Emi" in 2018 is `r pop3`, which is 0.001304714 greater than
 the proportion of my name alone.
+
+
+## Jingzhi Zhang
+
+```{r, message=FALSE, echo=FALSE, warning=FALSE}
+katherine <- totalnames %>%
+  filter(str_detect(name, "Katherine")) %>%
+  filter(sex == 'F')
+kat <- totalnames %>%
+  filter(str_detect(name, "^Kat")) %>%
+  group_by(year) %>%
+  filter(sex == 'F')
+ggplot()+
+  geom_col(data = kat, mapping = aes(x = year, y = prop))+
+  geom_smooth(data = katherine, mapping = aes(x = year, y = prop), se = FALSE, color = "green")+
+  annotate("text", x = 1950, y = 0.0045, label = "Katherine", color = "green")
+  labs(x = "Year", y = "Proportion", title = "Popularity of Female Kat and Katherine")
+  
+katherine2018 <- katherine %>%
+  filter(year == 2018)
+popular2018 <- sum(katherine2018$prop)
+
+katherine1998 <- katherine %>%
+  filter(year == 1998)
+popular1998 <- sum(katherine1998$prop)
+
+kat2018 <- kat %>%
+  filter(year == 2018)
+pop2018 <- sum(kat2018$prop)
+
+kat1998 <- kat %>%
+  filter(year == 1998)
+pop1998 <- sum(kat1998$prop)
+
+```
+
+I search my name by finding the string "Katherine" directly. I found that the popularity of name "Katherine" in 2018 is `r popular2018` and the popularity of it in 1998 which is the year that I was born is `r popular1998`. From the differences of number, it seems like "Katherine" used to be a popular name but less popular at present. And the popularity of "Kat" in 2018 is `r pop2018`, compared to 1998 which is `r pop1998`, this name is much less popular than it used to be.
 
 
 ### Name Reccommendation
