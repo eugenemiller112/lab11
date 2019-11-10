@@ -260,8 +260,9 @@ arielrachelprop <- arielrachel %>%
 
 arielrachelversions
 arielrachelprop
-
 ```
+
+The first table shows the number of versions of the names Ariel or Rachel for each year, and the second table shows the chances that a girl would have either of those names for each year.
 
 
 
