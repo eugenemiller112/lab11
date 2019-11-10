@@ -239,7 +239,37 @@ ggplot(all_joh) +
 
 The regular expression I used for my name was ^Jo[ah]?[n]+ie[y]*$. There has been a small steady decline of Johnnys since my birth year. Other names that start with Joh have been on a heavy decline from 1880 to 2018, so my name has become relatively more popular in comparison to those names. 
 
+## kaiyuan Fan
 
+```{r, message = FALSE, echo = FALSE, warning = FALSE}
+Fra <- totalnames %>%
+  filter(str_detect(name, "^Fra"))%>%
+  filter(sex =="M") %>%
+  group_by(year) 
+Frank <- totalnames %>%
+  filter(str_detect(name, "^Frank$"))%>%
+  filter(sex == "M") %>%
+  group_by(year)
+
+ggplot()+
+  geom_col(Fra, mapping= aes(year, prop), fill ="#393f87" ) +
+  geom_smooth(Frank, mapping = aes(year, prop), color = "#aa68b3", se = FALSE)+
+  labs(x = "Year", y = "Proportion", title = "Popularity of Fra and Frank since 1880 to 2018") +
+  theme(text = element_text(face = "plain",color = "#FF63B8", size = 13, lineheight =1,  hjust = 0.5), plot.title = element_text (hjust = 0.1,color="#8C57A6", size =15))
+  
+Frank2018 <- Frank %>%
+   filter(year == "2018")
+Frank1998 <- Frank %>%
+   filter(year == "1998")
+Fra2018 <- Fra %>%
+   filter(year == "2018") %>%
+  summarise(sum(prop))
+```
+
+I use "Frank" to be regular expression to find my name in dataset.
+The popularity of my name in 1998 is `r Frank1998$prop`. However, the popularity of my name in 2018 is `r Frank2018$prop`. Obviously, the popularity declined over years which shows on the plot above. 
+The popularity of all (male) names starting with "Fra" in 2018 is `r Fra2018`, which is 0.001168795. It is greater than
+the proportion of my name alone.
 
 ### Ariel and Rachel Regexs
 
