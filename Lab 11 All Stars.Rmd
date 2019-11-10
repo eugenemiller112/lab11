@@ -59,11 +59,11 @@ criteria <- semi_join(criteria, cannot_shorten, by="name")
 ```{r, message = FALSE, echo = FALSE, warning = FALSE}
 zarina <- totalnames %>%
   filter(str_detect(name, "^Zarina$"))
-ggplot(owen) +
+ggplot(zarina) +
   geom_point(mapping=aes(x=year, y=prop)) +
-  labs(title="Timeseries of 'Zarinac'") +
+  labs(title="Timeseries of 'Zarina'") +
   xlab("Year") +
-  ylab("Proporiton")
+  ylab("Proportion")
 ```
 
 ## Male -> Owen
@@ -75,7 +75,7 @@ ggplot(owen) +
   geom_point(mapping=aes(x=year, y=prop)) +
   labs(title="Timeseries of 'Owen'") +
   xlab("Year") +
-  ylab("Proporiton")
+  ylab("Proportion")
 ```
 
 We chose these names because they matched the three criteria given by the domain experts. 
