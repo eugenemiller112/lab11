@@ -1,6 +1,6 @@
 ---
 title: "Lab 11 All Stars"
-author: "Emily Archambault"
+author: "Johnny Tamanaha, Emily Archambault, Kaiyuan Fan, Eugene Miller, Jingzhi Zhang"
 date: "11/8/2019"
 output: html_document
 ---
@@ -402,3 +402,6 @@ ggplot(female_name_changes) +
 
 # Emily Archambault
 I created an individual plot showing a comparison between the popularity of my name and all other names starting with "Emi". I also did the Ariel/Rachel regex section.
+
+# Johnny Tamanaha
+Johnny Tamanaha: Along with my individual section I did the plot for the changes in female names from 1988 to 1990. I also found the percentiles of all our names in 1980, 1999 and 2018.
