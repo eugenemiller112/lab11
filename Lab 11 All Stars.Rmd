@@ -56,16 +56,6 @@ criteria <- semi_join(criteria, cannot_shorten, by="name")
 
 ## Female: Zarina
 
-```{r}
-zarina <- babynames_all %>%
-  filter(str_detect(name, "^Zarina$"))
-ggplot(owen) +
-  geom_point(mapping=aes(x=year, y=prop)) +
-  labs(title="Timeseries of 'Zarinac'") +
-  xlab("Year") +
-  ylab("Proporiton")
-```
-
 ## Male: Owen
 
 
