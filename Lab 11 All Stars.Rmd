@@ -68,15 +68,6 @@ ggplot(owen) +
 
 ## Male: Owen
 
-```{r}
-owen <- babynames_all %>%
-  filter(str_detect(name, "^Owen$"))
-ggplot(owen) +
-  geom_point(mapping=aes(x=year, y=prop)) +
-  labs(title="Timeseries of 'Owen'") +
-  xlab("Year") +
-  ylab("Proporiton")
-```
 
 We chose these names because they matched the three criteria given by the domain experts. 
 
