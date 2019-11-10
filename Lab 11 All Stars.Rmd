@@ -214,6 +214,29 @@ pop1998 <- sum(kat1998$prop)
 
 I search my name by finding the string "Katherine" directly. I found that the popularity of name "Katherine" in 2018 is `r popular2018` and the popularity of it in 1998 which is the year that I was born is `r popular1998`. From the differences of number, it seems like "Katherine" used to be a popular name but less popular at present. And the popularity of "Kat" in 2018 is `r pop2018`, compared to 1998 which is `r pop1998`, this name is much less popular than it used to be.
 
+## Johnny Tamanaha
+
+```{r}
+joh <- babynames_all %>%
+  filter(str_detect(name, "^Joh")) %>%
+  group_by(year) %>%
+  summarize(joh_prop = sum(prop))
+johnny_full <- babynames_all %>%
+ filter(str_detect(name, "^Jo[ah]?[n]+ie[y]*$")) %>%
+  group_by(year) %>%
+  summarize(johnny_prop = sum(prop))
+all_joh <- full_join(joh, johnny_full, by="year")
+all_joh <- all_joh %>%
+  gather(key=name_type, value=proportion, 2:3)
+
+ggplot(all_joh) +
+  geom_point(mapping=aes(x=year, y=proportion, color=name_type)) +
+  labs(title="Proportion of 'Johnny' Variants and Names that Start with 'Joh'", color="Name Type") +
+  xlab("Year") +
+  ylab("Proportion") +
+  scale_color_discrete(labels=c("Start with 'Joh'", "'Johnny' Variants"))
+```
+
 
 ### Name Reccommendation
 ```{r, message=FALSE, echo=FALSE, warning=FALSE}
