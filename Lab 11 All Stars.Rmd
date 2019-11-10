@@ -264,6 +264,68 @@ arielrachelprop
 
 The first table shows the number of versions of the names Ariel or Rachel for each year, and the second table shows the chances that a girl would have either of those names for each year.
 
+### Your Names
+
+```{r}
+all_prop_2018 <- babynames_all %>%
+  filter(str_detect(name, "Jo[ah]?[n]+[ey]+$") | str_detect(name, "^E[m]+[ai][l]+[iey]+$") | str_detect(name, "Eugene") | str_detect(name, "Katherine") | str_detect(name, "Frank")) %>%
+  filter(year==2018) %>%
+  summarize(total_prop = sum(prop)) %>%
+  mutate(year = 2018)
+all_percentile_2018 <- babynames_all %>%
+  mutate(lower_percentile = prop <= all_prop_2018$total_prop) %>%
+  summarize(percentile = sum(lower_percentile)/n()) %>%
+  mutate(year = 2018)
+
+all_prop_1999 <- babynames_all %>%
+  filter(str_detect(name, "Jo[ah]?[n]+[ey]+$") | str_detect(name, "^E[m]+[ai][l]+[iey]+$") | str_detect(name, "Eugene") | str_detect(name, "Katherine") | str_detect(name, "Frank")) %>%
+  filter(year==1999) %>%
+  summarize(total_prop = sum(prop)) %>%
+  mutate(year = 1999)
+all_percentile_1999 <- babynames_all %>%
+  mutate(lower_percentile = prop <= all_prop_1999$total_prop) %>%
+  summarize(percentile = sum(lower_percentile)/n()) %>%
+  mutate(year = 1999)
+
+all_prop_1980 <- babynames_all %>%
+  filter(str_detect(name, "Jo[ah]?[n]+[ey]+$") | str_detect(name, "^E[m]+[ai][l]+[iey]+$") | str_detect(name, "Eugene") | str_detect(name, "Katherine") | str_detect(name, "Frank")) %>%
+  filter(year==1980) %>%
+  summarize(total_prop = sum(prop)) %>%
+  mutate(year = 1980)
+all_percentile_1980 <- babynames_all %>%
+  mutate(lower_percentile = prop <= all_prop_1980$total_prop) %>%
+  summarize(percentile = sum(lower_percentile)/n()) %>%
+  mutate(year = 1980)
+
+prop_compare_1999_2018 <- rbind(all_prop_1999, all_prop_2018)
+ggplot(prop_compare_1999_2018) +
+  geom_col(aes(year, total_prop)) +
+  labs(title="Group Names Proportion in 1999 and 2018") +
+  xlab("Year") +
+  ylab("Proportion")
+
+prop_compare_1999_1980 <- rbind(all_prop_1999, all_prop_1980)
+ggplot(prop_compare_1999_1980) +
+  geom_col(aes(year, total_prop)) +
+  labs(title="Group Names Proportion in 1980 and 1999") +
+  xlab("Year") +
+  ylab("Proportion")
+
+percentile_compare_1999_2018 <- rbind(all_percentile_1999, all_percentile_2018)
+ggplot(percentile_compare_1999_2018) +
+  geom_col(aes(year, percentile)) +
+  labs(title="Group Names Percentile in 1999 and 2018") +
+  xlab("Year") +
+  ylab("Percentile")
+
+percentile_compare_1999_1980 <- rbind(all_percentile_1999, all_percentile_1980)
+ggplot(percentile_compare_1999_1980) +
+  geom_col(aes(year, percentile)) +
+  labs(title="Group Names Percentile in 1980 and 1999") +
+  xlab("Year") +
+  ylab("Percentile")
+
+```
 
 
 ### Name Reccommendation
