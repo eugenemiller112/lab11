@@ -216,7 +216,7 @@ I search my name by finding the string "Katherine" directly. I found that the po
 
 ## Johnny Tamanaha
 
-```{r}
+```{r, message = FALSE, echo = FALSE, warning = FALSE}
 joh <- babynames_all %>%
   filter(str_detect(name, "^Joh")) %>%
   group_by(year) %>%
@@ -243,7 +243,7 @@ The regular expression I used for my name was ^Jo[ah]?[n]+ie[y]*$. There has bee
 
 ### Ariel and Rachel Regexs
 
-```{r}
+```{r, message = FALSE, echo = FALSE, warning = FALSE}
 arielrachel <- totalnames %>%
   filter(str_detect(name, "A[r]+[iye][ea][l][le]*$") | str_detect(name, "^R[ae][aey]*[c]h[aey]+[l]+e?$")) %>%
   filter(year %in% list(1973, 1988, 1990, 2018)) %>%
@@ -266,7 +266,7 @@ The first table shows the number of versions of the names Ariel or Rachel for ea
 
 ### Your Names
 
-```{r}
+```{r, message = FALSE, echo = FALSE, warning = FALSE}
 all_prop_2018 <- babynames_all %>%
   filter(str_detect(name, "Jo[ah]?[n]+[ey]+$") | str_detect(name, "^E[m]+[ai][l]+[iey]+$") | str_detect(name, "Eugene") | str_detect(name, "Katherine") | str_detect(name, "Frank")) %>%
   filter(year==2018) %>%
@@ -325,25 +325,5 @@ ggplot(percentile_compare_1999_1980) +
   xlab("Year") +
   ylab("Percentile")
 
-```
-
-
-### Name Reccommendation
-```{r, message=FALSE, echo=FALSE, warning=FALSE}
-#Two uptrending names (Mia, Owen)
-
-mia <- babynames %>%
-  filter(str_detect(name,"^Mia$") & sex == "F")
-
-ggplot(mia) +
-  geom_jitter(mapping = aes(x = year, y = prop)) +
-  labs(title = "Timeseries for 'Mia'")
-
-owen <- babynames %>%
-  filter(str_detect(name,"^Owen$") & sex == "M")
-
-ggplot(owen) +
-  geom_jitter(mapping = aes(x = year, y = prop)) +
-  labs(title = "Timeseries for 'Owen'")
 ```
 
