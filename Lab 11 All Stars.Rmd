@@ -57,7 +57,7 @@ criteria <- semi_join(criteria, cannot_shorten, by="name")
 ## Female -> Zarina
 
 ```{r, message = FALSE, echo = FALSE, warning = FALSE}
-zarina <- babynames_all %>%
+zarina <- totalname %>%
   filter(str_detect(name, "^Zarina$"))
 ggplot(owen) +
   geom_point(mapping=aes(x=year, y=prop)) +
@@ -69,7 +69,7 @@ ggplot(owen) +
 ## Male -> Owen
 
 ```{r, message = FALSE, echo = FALSE, warning = FALSE}
-owen <- babynames_all %>%
+owen <- totalnames %>%
   filter(str_detect(name, "^Owen$"))
 ggplot(owen) +
   geom_point(mapping=aes(x=year, y=prop)) +
