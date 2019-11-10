@@ -398,3 +398,7 @@ ggplot(female_name_changes) +
   geom_vline(xintercept=ariel_change$total_diff)
 ```
 
+### Individual Summaries
+
+# Emily Archambault
+I created an individual plot showing a comparison between the popularity of my name and all other names starting with "Emi". I also did the Ariel/Rachel regex section.
