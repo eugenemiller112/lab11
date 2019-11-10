@@ -22,7 +22,7 @@ totalnames <- rbind(babynames, names2018)
 
 ### Analyzing babynames
 
-```{r}
+```{r, message = FALSE, echo = FALSE, warning = FALSE}
 babynames_2018 <- read_csv("yob2018.txt", col_names = c("name", "sex", "n"), col_types=list(col_character(), col_character(), col_double()))
 babynames_2018 <- babynames_2018 %>%
   mutate(year = 2018, prop = n/sum(n)) %>%
@@ -52,12 +52,31 @@ criteria <- semi_join(non_gender_ambiguous, trending_not_trendy, by="name")
 criteria <- semi_join(criteria, cannot_shorten, by="name")
 ```
 
-### Recommended Names:
+### Recommended Names
 
-## Female: Zarina
+## Female -> Zarina
 
-## Male: Owen
+```{r, message = FALSE, echo = FALSE, warning = FALSE}
+zarina <- babynames_all %>%
+  filter(str_detect(name, "^Zarina$"))
+ggplot(owen) +
+  geom_point(mapping=aes(x=year, y=prop)) +
+  labs(title="Timeseries of 'Zarinac'") +
+  xlab("Year") +
+  ylab("Proporiton")
+```
 
+## Male -> Owen
+
+```{r, message = FALSE, echo = FALSE, warning = FALSE}
+owen <- babynames_all %>%
+  filter(str_detect(name, "^Owen$"))
+ggplot(owen) +
+  geom_point(mapping=aes(x=year, y=prop)) +
+  labs(title="Timeseries of 'Owen'") +
+  xlab("Year") +
+  ylab("Proporiton")
+```
 
 We chose these names because they matched the three criteria given by the domain experts. 
 
