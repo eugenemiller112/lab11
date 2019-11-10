@@ -410,6 +410,7 @@ Johnny Tamanaha: Along with my individual section I did the plot for the changes
 I create a plot over time (1880-2018) of the proportion of names in a given year that start with the first three letters of your name. And I find the populariy of my name declined over years.
 
 # Eugene Miller
+I created an individual plot showing the popularity of my name (Eugene, Eug) over time, as well as a plot that shows the popularity of my name in 1980, 1999, 2018. I also identified Owen as a possible good baby name for our domain expert. 
 
 # jingzhi Zhang
 I create a plot of proportion of names with "katherine"(female) and start with the first three letters of your name over years. 
