@@ -258,9 +258,11 @@ arielrachelprop <- arielrachel %>%
   group_by(year) %>%
   summarise(prop_A_R = sum(prop))
 
+arielrachelversions
+arielrachelprop
+
 ```
 
-There are `r arielrachelversions` different versions of each name for each year, and the chances a girl would have a version of the name Ariel or Rachel in each year is `r arielrachelprop`.
 
 
 ### Name Reccommendation
