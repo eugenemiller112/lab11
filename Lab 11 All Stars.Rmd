@@ -222,7 +222,7 @@ joh <- babynames_all %>%
   group_by(year) %>%
   summarize(joh_prop = sum(prop))
 johnny_full <- babynames_all %>%
- filter(str_detect(name, "^Jo[ah]?[n]+ie[y]*$")) %>%
+ filter(str_detect(name, "Jo[ah]?[n]+[ey]+$")) %>%
   group_by(year) %>%
   summarize(johnny_prop = sum(prop))
 all_joh <- full_join(joh, johnny_full, by="year")
