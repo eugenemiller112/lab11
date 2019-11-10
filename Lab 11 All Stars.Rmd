@@ -237,6 +237,29 @@ ggplot(all_joh) +
   scale_color_discrete(labels=c("Start with 'Joh'", "'Johnny' Variants"))
 ```
 
+### Ariel and Rachel Regexs
+
+```{r}
+arielrachel <- totalnames %>%
+  filter(str_detect(name, "A[r]+[iye][ea][l][le]*$") | str_detect(name, "^R[ae][aey]*[c]h[aey]+[l]+e?$")) %>%
+  filter(year %in% list(1973, 1988, 1990, 2018)) %>%
+  filter(sex == "F")
+  
+arielrachelversions <- arielrachel %>%
+  group_by(year) %>%
+  group_by(year, initial=str_sub(name, 1,1))%>%
+  summarise(variants = n())
+
+arielrachelprop <- arielrachel %>%
+  group_by(year) %>%
+  summarise(prop_A_R = sum(prop))
+
+```
+
+Using the regexs "A[r]+[iye][ea][l][le]*$" for Ariel and "^R[ae][aey]*[c]h[aey]+[l]+e?$" for Rachel,
+there are `r arielrachelversions` different versions of each name for each year, and the chances a girl 
+would have a version of the name Ariel or Rachel in each year is `r arielrachelprop`.
+
 
 ### Name Reccommendation
 ```{r, message=FALSE, echo=FALSE, warning=FALSE}
