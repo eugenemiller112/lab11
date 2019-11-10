@@ -237,6 +237,10 @@ ggplot(all_joh) +
   scale_color_discrete(labels=c("Start with 'Joh'", "'Johnny' Variants"))
 ```
 
+The regular expression I used for my name was ^Jo[ah]?[n]+ie[y]*$. There has been a small steady decline of Johnnys since my birth year. Other names that start with Joh have been on a heavy decline from 1880 to 2018, so my name has become relatively more popular in comparison to those names. 
+
+
+
 ### Ariel and Rachel Regexs
 
 ```{r}
